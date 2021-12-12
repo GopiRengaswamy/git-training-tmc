@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+ROOT_PATH=`pwd`
+java -Dtalend.component.manager.m2.repository=$ROOT_PATH/../lib -Xms256M -Xmx1024M -cp .:$ROOT_PATH:$ROOT_PATH/../lib/routines.jar:$ROOT_PATH/../lib/log4j-slf4j-impl-2.12.1.jar:$ROOT_PATH/../lib/log4j-api-2.12.1.jar:$ROOT_PATH/../lib/log4j-core-2.12.1.jar:$ROOT_PATH/../lib/commons-lang3-3.8.1.jar:$ROOT_PATH/../lib/json-smart-2.2.1.jar:$ROOT_PATH/../lib/audit-common-1.8.0.jar:$ROOT_PATH/../lib/slf4j-api-1.7.25.jar:$ROOT_PATH/../lib/audit-log4j2-1.8.0.jar:$ROOT_PATH/../lib/logging-event-layout-1.8.0.jar:$ROOT_PATH/../lib/job-audit.jar:$ROOT_PATH/../lib/asm-5.0.3.jar:$ROOT_PATH/../lib/accessors-smart-1.1.jar:$ROOT_PATH/sample_git_job_0_1.jar: sample_project.sample_git_job_0_1.Sample_GIT_Job  --context=Default "$@"
