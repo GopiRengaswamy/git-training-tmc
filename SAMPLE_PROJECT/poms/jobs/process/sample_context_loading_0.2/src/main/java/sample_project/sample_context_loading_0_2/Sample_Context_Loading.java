@@ -20,9 +20,6 @@ import java.util.Comparator;
 //the import part of tJava_1
 //import java.util.List;
 
-//the import part of tJava_2
-//import java.util.List;
-
 @SuppressWarnings("unused")
 
 /**
@@ -278,16 +275,6 @@ public class Sample_Context_Loading implements TalendJob {
 		tJava_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tJava_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tJava_2_onSubJobError(exception, errorComponent, globalMap);
-	}
-
 	public void talendJobLog_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
@@ -299,14 +286,6 @@ public class Sample_Context_Loading implements TalendJob {
 	}
 
 	public void tJava_1_onSubJobError(Exception exception, String errorComponent,
-			final java.util.Map<String, Object> globalMap) throws TalendException {
-
-		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread.currentThread().getId() + "", "FATAL", "",
-				exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception), "");
-
-	}
-
-	public void tJava_2_onSubJobError(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap) throws TalendException {
 
 		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread.currentThread().getId() + "", "FATAL", "",
@@ -360,8 +339,7 @@ public class Sample_Context_Loading implements TalendJob {
 
 				String foo = "bar";
 
-				System.out.println(context.Environment);
-				System.out.println(context.DB_Name);
+				System.out.println("Test Git Job");
 
 				/**
 				 * [tJava_1 begin ] stop
@@ -408,11 +386,6 @@ public class Sample_Context_Loading implements TalendJob {
 				ok_Hash.put("tJava_1", true);
 				end_Hash.put("tJava_1", System.currentTimeMillis());
 
-				if (execStat) {
-					runStat.updateStatOnConnection("OnComponentOk1", 0, "ok");
-				}
-				tJava_2Process(globalMap);
-
 				/**
 				 * [tJava_1 end ] stop
 				 */
@@ -450,130 +423,6 @@ public class Sample_Context_Loading implements TalendJob {
 		}
 
 		globalMap.put("tJava_1_SUBPROCESS_STATE", 1);
-	}
-
-	public void tJava_2Process(final java.util.Map<String, Object> globalMap) throws TalendException {
-		globalMap.put("tJava_2_SUBPROCESS_STATE", 0);
-
-		final boolean execStat = this.execStat;
-
-		String iterateId = "";
-
-		String currentComponent = "";
-		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-		try {
-			// TDI-39566 avoid throwing an useless Exception
-			boolean resumeIt = true;
-			if (globalResumeTicket == false && resumeEntryMethodName != null) {
-				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
-				resumeIt = resumeEntryMethodName.equals(currentMethodName);
-			}
-			if (resumeIt || globalResumeTicket) { // start the resume
-				globalResumeTicket = true;
-
-				/**
-				 * [tJava_2 begin ] start
-				 */
-
-				ok_Hash.put("tJava_2", false);
-				start_Hash.put("tJava_2", System.currentTimeMillis());
-
-				currentComponent = "tJava_2";
-
-				int tos_count_tJava_2 = 0;
-
-				if (enableLogStash) {
-					talendJobLog.addCM("tJava_2", "tJava");
-					talendJobLogProcess(globalMap);
-				}
-
-				String foo = "bar";
-
-				System.out.println("Job Successfully Completed!");
-
-				/**
-				 * [tJava_2 begin ] stop
-				 */
-
-				/**
-				 * [tJava_2 main ] start
-				 */
-
-				currentComponent = "tJava_2";
-
-				tos_count_tJava_2++;
-
-				/**
-				 * [tJava_2 main ] stop
-				 */
-
-				/**
-				 * [tJava_2 process_data_begin ] start
-				 */
-
-				currentComponent = "tJava_2";
-
-				/**
-				 * [tJava_2 process_data_begin ] stop
-				 */
-
-				/**
-				 * [tJava_2 process_data_end ] start
-				 */
-
-				currentComponent = "tJava_2";
-
-				/**
-				 * [tJava_2 process_data_end ] stop
-				 */
-
-				/**
-				 * [tJava_2 end ] start
-				 */
-
-				currentComponent = "tJava_2";
-
-				ok_Hash.put("tJava_2", true);
-				end_Hash.put("tJava_2", System.currentTimeMillis());
-
-				/**
-				 * [tJava_2 end ] stop
-				 */
-			} // end the resume
-
-		} catch (java.lang.Exception e) {
-
-			TalendException te = new TalendException(e, currentComponent, globalMap);
-
-			throw te;
-		} catch (java.lang.Error error) {
-
-			runStat.stopThreadStat();
-
-			throw error;
-		} finally {
-
-			try {
-
-				/**
-				 * [tJava_2 finally ] start
-				 */
-
-				currentComponent = "tJava_2";
-
-				/**
-				 * [tJava_2 finally ] stop
-				 */
-			} catch (java.lang.Exception e) {
-				// ignore
-			} catch (java.lang.Error error) {
-				// ignore
-			}
-			resourceMap = null;
-		}
-
-		globalMap.put("tJava_2_SUBPROCESS_STATE", 1);
 	}
 
 	public void talendJobLogProcess(final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -1143,6 +992,6 @@ public class Sample_Context_Loading implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 36290 characters generated by Talend Big Data Platform on the December 12,
- * 2021 10:25:02 PM SGT
+ * 32763 characters generated by Talend Big Data Platform on the December 12,
+ * 2021 10:26:37 PM SGT
  ************************************************************************************************/
