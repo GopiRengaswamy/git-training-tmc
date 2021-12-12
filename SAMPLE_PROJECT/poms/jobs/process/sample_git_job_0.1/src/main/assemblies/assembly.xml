@@ -238,7 +238,7 @@
             <outputDirectory>lib</outputDirectory>
             <includes>
                 <include>org.talend.libraries:job-audit:jar:1.1</include>
-                <include>.code:routines:jar:7.3.1</include>
+                <include>org.example.sample_project.code:routines:jar:7.3.1</include>
             </includes>
             <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
             <useProjectArtifact>false</useProjectArtifact>
@@ -263,7 +263,7 @@
         <dependencySet>
             <outputDirectory>${talend.job.name}</outputDirectory>
             <includes>
-                <include>.job:Sample_GIT_Job:jar:0.1.0</include>
+                <include>org.example.sample_project.job:Sample_GIT_Job:jar:0.1.0</include>
             </includes>
             <outputFileNameMapping>${artifact.build.finalName}.${artifact.extension}</outputFileNameMapping>
             <useProjectArtifact>true</useProjectArtifact>
