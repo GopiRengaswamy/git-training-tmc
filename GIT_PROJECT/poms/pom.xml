@@ -11,6 +11,7 @@
   <modules>
     <module>code/routines</module>
     <module>code/beans</module>
+    <module>jobs/process/print_message_testing_0.1</module>
   </modules>
   <properties>
     <talend.project.name>GIT_PROJECT</talend.project.name>
